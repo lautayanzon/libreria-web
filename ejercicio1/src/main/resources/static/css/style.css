@@ -1,0 +1,79 @@
+
+nav {
+    display: flex;
+    justify-content: center;
+    background-color: rgb(121, 194, 194);
+    margin: 15px;
+}
+
+body {
+    background-color: rgb(245, 198, 176);
+    font-family: 'Times New Roman';
+}
+
+.cards {
+    margin-top: 3em;
+    display: flex;
+    justify-content: space-around;
+}
+
+.cards h2 {
+    text-align: center;
+}
+
+.bg-cards {
+    padding: 50px;
+    height: 180px;
+    width: 180px;
+    border: orangered 10px groove ;
+    outline: black solid;
+    background-color: lightcoral;
+    background-size: cover;
+    display: grid;
+    align-items: center;
+}
+
+.libro {
+    background-image: url("../img/libros.jpg");
+    background-position: 40% center;
+}
+
+.autor {
+    background-image: url("../img/autor.jpg");
+    background-position: 55% center;
+}
+
+.editorial {
+    background-image: url("../img/editorial.jpg");
+    background-position: 55% center;
+}
+
+a:link, a:visited {
+    color: white;
+    text-decoration: none;
+}
+
+a {
+    font-family: 'Segoe UI';
+    font-size: 15px;
+}
+
+.botones {
+    display: grid;
+    align-items: center;
+}
+
+.botones button {
+    margin-bottom: 10px;
+    padding: 5px;
+    color: white;
+    background-color: royalblue;
+    border: none;
+    border-radius: 5px;
+    outline: darkblue 1px;
+    outline-style: inset;
+}
+
+/* .sm {
+    margin-bottom: 0px;
+} */
