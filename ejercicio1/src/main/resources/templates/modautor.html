@@ -42,9 +42,9 @@
 
                     <input hidden th:value="${id}" name="id">
 
-                    <label for="titulo">Titulo del libro</label><br>
+                    <!-- <label for="titulo">Titulo del libro</label><br>
                     <input type="text" th:if="${error} == null" th:value="${libro?.titulo} ?: 'No posee libros.'" name="titulo" disabled><br>
-                    <input type="text" th:if="${error} != null" th:value="${titulo}" name="titulo"><br>
+                    <input type="text" th:if="${error} != null" th:value="${titulo}" name="titulo"><br> -->
                     <label for="nombre">Nombre del autor</label><br>
                     <input type="text" th:value="${autor.nombre}" name="nombre"><br>
                     <input type="text" th:if="${error} != null" th:value="${nombre}" name="nombre"><br>

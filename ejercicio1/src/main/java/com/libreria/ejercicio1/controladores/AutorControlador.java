@@ -67,11 +67,8 @@ public class AutorControlador {
 
         try {
             Autor autor = autorservicio.consultarPorID(id);
-            Libro libro = libroservicio.consultarPorAutor(autor.getNombre());
 
             modelo.put("autor", autor);
-            modelo.put("libro", libro);
-
         } catch (ErrorServicio ex) {
             modelo.put("error", ex.getMessage());
             return "modautor.html";

@@ -49,15 +49,18 @@
                         <tr>
                             <th scope="row" th:text="${editorial.nombre}">Mark</th>
                             <td><button type="button" class="btn btn-primary"><a
-                                        href="/editorial/formeditorial">Editar</a></button></td>
-                            <td><button type="button" class="btn btn-danger">Eliminar</button></td>
+                                        th:href="@{/editorial/modificar/__${editorial.id}__}">Editar</a></button></td>
+                            <td><button type="button" class="btn btn-danger"><a
+                                        th:href="@{/editorial/baja/__${editorial.id}__}">Dar de baja</a></button>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
             </div>
 
             <div class="btn-pie">
-                <button type="button" class="btn btn-primary"><a href="/editorial/formeditorial">Guardar una editorial</a></button>
+                <button type="button" class="btn btn-primary"><a href="/editorial/formeditorial">Guardar una
+                        editorial</a></button>
                 <button type="button" class="btn btn-primary"><a href="/">Volver</a></button>
             </div>
         </div>

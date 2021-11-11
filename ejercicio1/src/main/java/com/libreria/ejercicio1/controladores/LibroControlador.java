@@ -65,7 +65,7 @@ public class LibroControlador {
             return "formlibro.html";
         }
 
-        return "index.html";
+        return "redirect:/libro";
     }
 
     //Modificar un libro

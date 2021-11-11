@@ -76,11 +76,12 @@ a:hover {
 
 .stick {
     position: sticky;
+    over
 }
 
 .tabla table {
-    width: 700px;
     height: 60%;
+    width: 700px;
 }
 
 .table td, .table th {

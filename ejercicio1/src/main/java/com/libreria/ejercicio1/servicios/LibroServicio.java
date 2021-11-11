@@ -34,9 +34,9 @@ public class LibroServicio {
 
         validar(isbn, titulo, anio, ejemplares, ejemplaresP);
 
-        Autor autor1 = autorepo.buscarPorNombre(autor);
+        Autor autor1 = validarAutor(autor);
 
-        Editorial editorial1 = editorialrepo.buscarPorNombre(editorial);
+        Editorial editorial1 = validarEditorial(editorial);
 
         Libro l = new Libro();
         l.setIsbn(isbn);
@@ -46,12 +46,8 @@ public class LibroServicio {
         l.setEjemplaresPrestados(ejemplaresP);
         l.setEjemplaresRestantes(l.getEjemplares() - l.getEjemplaresPrestados());
 
-        if (autor1 != null) {
-            l.setAutor(autor1);
-        }
-        if (editorial1 != null) {
-            l.setEditorial(editorial1);
-        }
+        l.setAutor(autor1);
+        l.setEditorial(editorial1);
 
         l.setAlta(Boolean.TRUE);
 
@@ -150,10 +146,22 @@ public class LibroServicio {
     public Libro consultarPorAutor(String nombre) throws ErrorServicio {
 
         if (nombre == null || nombre.trim().isEmpty()) {
-            throw new ErrorServicio("El titulo no puede ser nulo.");
+            throw new ErrorServicio("El nombre no puede ser nulo.");
         }
 
         Libro libro = libror.buscarPorAutor(nombre);
+
+        return libro;
+    }
+    
+    @Transactional(readOnly = true)
+    public Libro consultarPorEditorial(String nombre) throws ErrorServicio {
+
+        if (nombre == null || nombre.trim().isEmpty()) {
+            throw new ErrorServicio("El nombre no puede ser nulo.");
+        }
+
+        Libro libro = libror.buscarPorEditorial(nombre);
 
         return libro;
     }
@@ -201,6 +209,28 @@ public class LibroServicio {
         }
         if (ejemplaresP == null || ejemplaresP < 0) {
             throw new ErrorServicio("Los ejemplares prestados no pueden ser nulos.");
+        }
+    }
+
+    private Autor validarAutor(String autor) {
+
+        Autor autor1 = autorepo.buscarPorNombre(autor);
+
+        if (autor1 != null) {
+            return autor1;
+        } else {
+            return null;
+        }
+    }
+
+    private Editorial validarEditorial(String editorial) {
+
+        Editorial editorial1 = editorialrepo.buscarPorNombre(editorial);
+
+        if (editorial1 != null) {
+            return editorial1;
+        } else {
+            return null;
         }
     }
 
