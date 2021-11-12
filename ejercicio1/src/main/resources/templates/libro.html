@@ -37,32 +37,34 @@
             </div>
 
             <div class="tabla">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th scope="col">Nombre</th>
-                            <th scope="col">Autor</th>
-                            <th scope="col">Editorial</th>
-                            <th scope="col">Año</th>
-                            <th scope="col">Editar Libro</th>
-                            <th scope="col">Eliminar Libro</th>
-                        </tr>
-                    </thead>
-                    <tbody th:each="libro : ${libros}">
-                        <tr>
-                            <td th:text="${libro.titulo}">Nombre Libro</td>
-                            <td th:if="${libro.autor !=null}" th:text="${libro.autor.nombre}">Autor</td>
-                            <td th:if="${libro.autor ==null}"></td>
-                            <td th:if="${libro.editorial !=null}" th:text="${libro.editorial.nombre}">Editorial</td>
-                            <td th:if="${libro.editorial ==null}"></td>
-                            <td th:text="${libro.anio}">Año 1</td>
-                            <td><button type="button" class="btn btn-primary"><a
-                                        th:href="@{/libro/modificar/__${libro.id}__}">Editar</a></button></td>
-                            <td><button type="button" class="btn btn-danger"><a
-                                        th:href="@{/libro/baja/__${libro.id}__}">Dar de baja</a></button></td>
-                        </tr>
-                    </tbody>
-                </table>
+                <div class="prueba">
+                    <table class="table">
+                        <thead class="sticky">
+                            <tr>
+                                <th scope="col">Nombre</th>
+                                <th scope="col">Autor</th>
+                                <th scope="col">Editorial</th>
+                                <th scope="col">Año</th>
+                                <th scope="col">Editar Libro</th>
+                                <th scope="col">Eliminar Libro</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="libro : ${libros}">
+                                <td th:text="${libro.titulo}">Nombre Libro</td>
+                                <td th:if="${libro.autor !=null}" th:text="${libro.autor.nombre}">Autor</td>
+                                <td th:if="${libro.autor ==null}"></td>
+                                <td th:if="${libro.editorial !=null}" th:text="${libro.editorial.nombre}">Editorial</td>
+                                <td th:if="${libro.editorial ==null}"></td>
+                                <td th:text="${libro.anio}">Año 1</td>
+                                <td><button type="button" class="btn btn-primary"><a
+                                            th:href="@{/libro/modificar/__${libro.id}__}">Editar</a></button></td>
+                                <td><button type="button" class="btn btn-danger"><a
+                                            th:href="@{/libro/baja/__${libro.id}__}">Dar de baja</a></button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
 
             <div class="btn-pie">

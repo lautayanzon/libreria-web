@@ -153,7 +153,7 @@ public class LibroServicio {
 
         return libro;
     }
-    
+
     @Transactional(readOnly = true)
     public Libro consultarPorEditorial(String nombre) throws ErrorServicio {
 
@@ -210,16 +210,31 @@ public class LibroServicio {
         if (ejemplaresP == null || ejemplaresP < 0) {
             throw new ErrorServicio("Los ejemplares prestados no pueden ser nulos.");
         }
+        
+        if (ejemplares < ejemplaresP) {
+            throw new ErrorServicio("No hay suficientes ejemplares.");
+        }
     }
 
-    private Autor validarAutor(String autor) {
+    private Autor validarAutor(String autor) throws ErrorServicio {
 
         Autor autor1 = autorepo.buscarPorNombre(autor);
 
         if (autor1 != null) {
             return autor1;
         } else {
-            return null;
+
+            if (autor == null || autor.trim().isEmpty()) {
+                return null;
+            }
+
+            Autor a = new Autor();
+            a.setNombre(autor);
+            a.setAlta(Boolean.TRUE);
+
+            autorepo.save(a);
+
+            return a;
         }
     }
 
@@ -230,7 +245,18 @@ public class LibroServicio {
         if (editorial1 != null) {
             return editorial1;
         } else {
-            return null;
+
+            if (editorial == null || editorial.trim().isEmpty()) {
+                return null;
+            }
+
+            Editorial e = new Editorial();
+            e.setNombre(editorial);
+            e.setAlta(Boolean.TRUE);
+
+            editorialrepo.save(e);
+
+            return e;
         }
     }
 

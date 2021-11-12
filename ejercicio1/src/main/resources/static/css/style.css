@@ -8,6 +8,8 @@ nav {
 
 body {
     background-color: rgb(245, 198, 176);
+    /* background: linear-gradient(to top, #feada6 0%, #f5efef 100%); */
+    /* background-image: url(../img/fondo.png); */
     font-family: 'Times New Roman';
 }
 

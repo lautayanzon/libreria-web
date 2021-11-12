@@ -61,6 +61,13 @@ public class LibroControlador {
             libroservicio.guardarLibro(isbn, titulo, anio, ejemplares, ejemplaresP, autor, editorial);
 
         } catch (ErrorServicio ex) {
+            modelo.put("titulo", titulo);
+            modelo.put("isbn", isbn);
+            modelo.put("anio", anio);
+            modelo.put("ejemplares", ejemplares);
+            modelo.put("ejemplaresP", ejemplaresP);
+            modelo.put("autor", autor);
+            modelo.put("editorial", editorial);
             modelo.put("error", ex.getMessage());
             return "formlibro.html";
         }

@@ -69,27 +69,27 @@ a:hover {
     justify-content: center;
     align-items: center;
     height: 500px;
-    width: 800px;
+    width: 1000px;
     overflow-y: scroll;
-    outline: black solid 1px;
-}
-
-.stick {
-    position: sticky;
-    over
+    border: black solid 2px;
 }
 
 .tabla table {
-    height: 60%;
-    width: 700px;
+    width: 800px;
 }
 
 .table td, .table th {
     padding: 15px;
     text-align: center;
-    position: sticky;
 }
 
-th[scope="row"] {
-    font-weight: 400;
+.sticky {
+    /* background-color: rgb(245, 198, 176); */
+    background-color: lightcoral;
+    position: sticky;
+    top: 0;
+}
+
+.prueba {
+    height: 500px;
 }

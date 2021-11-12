@@ -41,19 +41,19 @@
                 <form action="/registrarlibro" method="POST">
 
                     <label for="titulo">Titulo</label><br>
-                    <input type="text" name="titulo"><br>
+                    <input type="text" name="titulo" th:value="${titulo}"><br>
                     <label for="isbn">ISBN</label><br>
-                    <input type="number" name="isbn"><br>
+                    <input type="number" name="isbn" th:value="${isbn}"><br>
                     <label for="año">Año</label><br>
-                    <input type="number" name="anio"><br>
+                    <input type="number" name="anio" th:value="${anio}"><br>
                     <label for="ejemplares">Ejemplares</label><br>
-                    <input type="number" name="ejemplares"><br>
+                    <input type="number" name="ejemplares" th:value="${ejemplares}"><br>
                     <label for="ejemplaresP">Ejemplares prestados</label><br>
-                    <input type="number" name="ejemplaresP"><br>
+                    <input type="number" name="ejemplaresP" th:value="${ejemplaresP}"><br>
                     <label for="autor">Autor</label><br>
-                    <input type="text" name="autor"><br>
+                    <input type="text" name="autor" th:value="${autor}"><br>
                     <label for="editorial">Editorial</label><br>
-                    <input type="text" name="editorial"><br>
+                    <input type="text" name="editorial" th:value="${editorial}"><br>
 
                     <br>
                     <button type="submit">Guardar</button>
@@ -62,11 +62,11 @@
 
             <div class="form-pie">
                 <div class="msg">
-                    <p th:if="${error != null}" th:text="${error}">Lorem ipsum, dolor sit amet consectetur adipisicing elit. </p>
+                    <p th:if="${error != null}" th:text="${error}"></p>
                 </div>
                 
                 <div class="btn-pie">
-                    <button type="button" class="btn btn-primary"><a href="/">Volver</a></button>
+                    <button type="button" class="btn btn-primary"><a href="/libro">Volver</a></button>
                 </div>
             </div>
 
