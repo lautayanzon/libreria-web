@@ -33,19 +33,36 @@ public class AutorControlador {
 
     //Mostrar tabla
     @GetMapping("/autor")
-    public String autor(ModelMap model) {
+    public String autor(ModelMap modelo) {
 
-        List<Autor> listaAutores = autorservicio.consultarTodos();
+        List<Libro> listaAutores = libroservicio.consultarPorAutor();
 
-        model.put("autores", listaAutores);
+        modelo.put("lista", listaAutores);
+        modelo.put("tablahead", "autores");
+        modelo.put("pagtitulo", "Autores");
+        modelo.put("tr", "autores");
+        modelo.put("urlguardar", "/autor/formautor");
+        modelo.put("btguardar", "un autor");
 
-        return "autor.html";
+        return "tabla.html";
     }
 
     //Guardar autores
     @GetMapping("/autor/formautor")
-    public String guardarAutor() {
-        return "formautor.html";
+    public String guardarAutor(ModelMap modelo) {
+
+        List<Libro> listaLibros = libroservicio.consultarPorAutorActivo();
+
+        modelo.put("lista", listaLibros);
+
+        modelo.put("pagtitulo", "Formulario autores");
+        modelo.put("formhead", "un autor");
+        modelo.put("urlvolver", "/autor");
+        modelo.put("form", "autor");
+        modelo.put("label", "del autor");
+        modelo.put("urlaction", "/registrarautor");
+
+        return "formulario.html";
     }
 
     @PostMapping("/registrarautor")
@@ -55,7 +72,14 @@ public class AutorControlador {
             autorservicio.guardarAutor(nombre, titulo);
         } catch (ErrorServicio ex) {
             modelo.put("error", ex.getMessage());
-            return "formautor.html";
+            modelo.put("pagtitulo", "Formulario autores");
+            modelo.put("formhead", "un autor");
+            modelo.put("titulo", titulo);
+            modelo.put("urlvolver", "/autor");
+            modelo.put("form", "autor");
+            modelo.put("label", "del autor");
+            modelo.put("urlaction", "/registrarautor");
+            return "formulario.html";
         }
 
         return "redirect:/autor";
@@ -68,13 +92,18 @@ public class AutorControlador {
         try {
             Autor autor = autorservicio.consultarPorID(id);
 
+            modelo.put("pagtitulo", "Modificar autor");
+            modelo.put("formhead", "un autor");
+            modelo.put("urlvolver", "/autor");
+            modelo.put("form", "autor");
+
             modelo.put("autor", autor);
         } catch (ErrorServicio ex) {
             modelo.put("error", ex.getMessage());
-            return "modautor.html";
+            return "modificar.html";
         }
 
-        return "modautor.html";
+        return "modificar.html";
     }
 
     @PostMapping("/modificarautor/{id}")
@@ -86,35 +115,38 @@ public class AutorControlador {
             modelo.put("titulo", titulo);
             modelo.put("nombre", nombre);
             modelo.put("error", ex.getMessage());
-            return "modautor.html";
+            modelo.put("pagtitulo", "Modificar autor");
+            modelo.put("formhead", "un autor");
+            modelo.put("urlvolver", "/autor");
+            modelo.put("form", "autor");
+            return "modificar.html";
         }
 
         return "redirect:/autor";
     }
-    
+
     //Dar de baja-alta
-    
     @GetMapping("/autor/baja/{id}")
-    public String darDeBaja(@PathVariable String id){
-        
+    public String darDeBaja(@PathVariable String id) {
+
         try {
             autorservicio.darDeBaja(id);
         } catch (ErrorServicio ex) {
             Logger.getLogger(AutorControlador.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         return "redirect:/autor";
     }
-    
+
     @GetMapping("/autor/alta/{id}")
-    public String darDeAlta(@PathVariable String id){
-        
+    public String darDeAlta(@PathVariable String id) {
+
         try {
             autorservicio.darDeAlta(id);
         } catch (ErrorServicio ex) {
             Logger.getLogger(AutorControlador.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         return "redirect:/autor";
     }
 

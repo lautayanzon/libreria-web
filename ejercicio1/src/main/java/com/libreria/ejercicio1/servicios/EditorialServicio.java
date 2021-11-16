@@ -28,6 +28,12 @@ public class EditorialServicio {
     public void guardarEditorial(String nombre, String titulo) throws ErrorServicio {
 
         validar(nombre);
+        
+        Editorial editorial1 = ediRepo.buscarPorNombre(nombre);
+        
+        if (editorial1 != null) {
+            throw new ErrorServicio("La editorial ya existe.");
+        }
 
         Editorial e = new Editorial();
         e.setNombre(nombre);

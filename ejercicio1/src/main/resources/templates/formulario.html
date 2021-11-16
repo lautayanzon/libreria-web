@@ -9,7 +9,7 @@
         integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="../static/css/form.css">
     <link rel="stylesheet" type="text/css" href="/css/form.css">
-    <title>Modificar libros</title>
+    <title th:text="${pagtitulo}"></title>
 </head>
 
 <body>
@@ -34,28 +34,44 @@
         <div class="contenido">
 
             <div class="hd">
-                <h3>Modificar un libro</h3>
+                <h3>Registrar <span th:text="${formhead}"></span></h3>
             </div>
 
             <div class="formulario">
-                <form action="/modificarlibro/__${libro.id}__" method="POST">
+                <form th:if="${form} == 'libro'" th:action="@{${urlaction}}" method="POST">
 
-                    <input hidden th:value="${id}" name="id">
                     <label for="titulo">Titulo</label><br>
-                    <input type="text" th:if="${error == null}" th:value="${libro.titulo}" name="titulo"><br>
-                    <input type="text" th:if="${error != null}" th:value="${titulo}" name="titulo"><br>
+                    <input type="text" name="titulo" th:value="${titulo}"><br>
                     <label for="isbn">ISBN</label><br>
-                    <input type="number" th:if="${error == null}" th:value="${libro.isbn}" name="isbn"><br>
-                    <input type="number" th:if="${error != null}" th:value="${isbn}" name="isbn"><br>
+                    <input type="number" name="isbn" th:value="${isbn}"><br>
                     <label for="año">Año</label><br>
-                    <input type="number" th:if="${error == null}" th:value="${libro.anio}" name="anio"><br>
-                    <input type="number" th:if="${error != null}" th:value="${anio}" name="anio"><br>
+                    <input type="number" name="anio" th:value="${anio}"><br>
                     <label for="ejemplares">Ejemplares</label><br>
-                    <input type="number" th:if="${error == null}" th:value="${libro.ejemplares}" name="ejemplares"><br>
-                    <input type="number" th:if="${error != null}" th:value="${ejemplares}" name="ejemplares"><br>
+                    <input type="number" name="ejemplares" th:value="${ejemplares}"><br>
                     <label for="ejemplaresP">Ejemplares prestados</label><br>
-                    <input type="number" th:if="${error == null}" th:value="${libro.ejemplaresPrestados}" name="ejemplaresP"><br>
-                    <input type="number" th:if="${error != null}" th:value="${ejemplaresPrestados}" name="ejemplaresP"><br>
+                    <input type="number" name="ejemplaresP" th:value="${ejemplaresP}"><br>
+                    <label for="autor">Autor</label><br>
+                    <input type="text" name="autor" th:value="${autor}"><br>
+                    <label for="editorial">Editorial</label><br>
+                    <input type="text" name="editorial" th:value="${editorial}"><br>
+
+                    <br>
+                    <button type="submit">Guardar</button>
+                </form>
+                <form th:if="${form} != 'libro'" th:action="@{${urlaction}}" method="POST">
+
+                    <label for="titulo">Titulo del libro</label><br>
+                    <select name="titulo">
+
+                        <option th:each="libro : ${lista}" th:value="${libro.titulo}" th:text="${libro.titulo}"></option>
+                        <option th:if="${error} != null" th:value="${titulo}" th:text="${titulo}"></option>
+
+                    </select>
+
+                    <!-- <label for="titulo">Titulo del libro</label><br>
+                    <input type="text" name="titulo"><br> -->
+                    <label for="nombre">Nombre <span th:text="${label}"></span></label><br>
+                    <input type="text" name="nombre"><br>
 
                     <br>
                     <button type="submit">Guardar</button>
@@ -64,15 +80,11 @@
 
             <div class="form-pie">
                 <div class="msg">
-                    <p th:if="${error != null}" th:text="${error}">Lorem ipsum, dolor sit amet consectetur adipisicing
-                        elit. </p>
-                    <p th:unless="${exito != null}" th:text="${exito}">Lorem ipsum, dolor sit amet consectetur adipisicing
-                        elit. </p>
-
+                    <p th:if="${error != null}" th:text="${error}"></p>
                 </div>
-
+                
                 <div class="btn-pie">
-                    <button type="button" class="btn btn-primary"><a href="/libro">Volver</a></button>
+                    <button type="button" class="btn btn-primary"><a th:href="@{${urlvolver}}">Volver</a></button>
                 </div>
             </div>
 

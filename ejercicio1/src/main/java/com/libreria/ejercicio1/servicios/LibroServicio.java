@@ -193,6 +193,38 @@ public class LibroServicio {
 
         return listaLibros;
     }
+    
+    @Transactional(readOnly = true)
+    public List<Libro> consultarPorAutor() {
+
+        List<Libro> listaLibros = libror.buscarAutores();
+
+        return listaLibros;
+    }
+    
+    @Transactional(readOnly = true)
+    public List<Libro> consultarPorAutorActivo() {
+
+        List<Libro> listaLibros = libror.buscarAutoresActivos();
+
+        return listaLibros;
+    }
+    
+    @Transactional(readOnly = true)
+    public List<Libro> consultarPorEditorialActiva() {
+
+        List<Libro> listaLibros = libror.buscarEditorialesActivas();
+
+        return listaLibros;
+    }
+    
+    @Transactional(readOnly = true)
+    public List<Libro> consultarPorEditorial() {
+
+        List<Libro> listaLibros = libror.buscarEditoriales();
+
+        return listaLibros;
+    }
 
     private void validar(Long isbn, String titulo, Integer anio, Integer ejemplares, Integer ejemplaresP) throws ErrorServicio {
         if (isbn == null) {

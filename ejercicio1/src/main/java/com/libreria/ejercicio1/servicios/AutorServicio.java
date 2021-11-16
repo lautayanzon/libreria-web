@@ -28,6 +28,12 @@ public class AutorServicio {
     public void guardarAutor(String nombre, String titulo) throws ErrorServicio {
 
         validar(nombre);
+        
+        Autor autor1 = autorRepo.buscarPorNombre(nombre);
+        
+        if (autor1 != null) {
+            throw new ErrorServicio("El autor ya existe.");
+        }
 
         Autor a = new Autor();
         a.setNombre(nombre);

@@ -1,13 +1,13 @@
 nav {
     display: flex;
     justify-content: space-between;
-    background-color: rgb(121, 194, 194);
+    background-color: rgb(120, 221, 221);
     margin: 15px;
     font-family: 'Times New Roman';
 }
 
 body {
-    background-color: rgb(245, 198, 176);
+    background-color: rgb(253, 166, 85);
 }
 
 .titulo {
@@ -70,12 +70,11 @@ a:hover {
     align-items: center;
     height: 500px;
     width: 1000px;
-    overflow-y: scroll;
     border: black solid 2px;
 }
 
-.tabla table {
-    width: 800px;
+.table {
+    top: 0;
 }
 
 .table td, .table th {
@@ -90,6 +89,12 @@ a:hover {
     top: 0;
 }
 
-.prueba {
-    height: 500px;
+.over-fixed {
+    height: 450px;
+    width: 800px;
+    overflow-y: auto;
 }
+
+th[scope="col"] {
+    border: 0px;
+} 

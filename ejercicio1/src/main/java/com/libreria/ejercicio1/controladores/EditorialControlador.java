@@ -33,19 +33,36 @@ public class EditorialControlador {
 
     //Mostrar tabla
     @GetMapping("/editorial")
-    public String editorial(ModelMap model) {
+    public String editorial(ModelMap modelo) {
 
-        List<Editorial> listaEditorial = ediservicio.consultarTodos();
+        List<Libro> listaEditorial = libroservicio.consultarPorEditorial();
 
-        model.put("editoriales", listaEditorial);
+        modelo.put("lista", listaEditorial);
+        modelo.put("tablahead", "editoriales");
+        modelo.put("pagtitulo", "Editoriales");
+        modelo.put("tr", "editoriales");
+        modelo.put("urlguardar", "/editorial/formeditorial");
+        modelo.put("btguardar", "una editorial");
 
-        return "editorial.html";
+        return "tabla.html";
     }
 
     //Guardar editoriales
     @GetMapping("/editorial/formeditorial")
-    public String guardarEditorial() {
-        return "formeditorial.html";
+    public String guardarEditorial(ModelMap modelo) {
+
+        List<Libro> listaLibros = libroservicio.consultarPorEditorialActiva();
+
+        modelo.put("lista", listaLibros);
+
+        modelo.put("pagtitulo", "Formulario editoriales");
+        modelo.put("formhead", "una editorial");
+        modelo.put("urlvolver", "/editorial");
+        modelo.put("form", "editorial");
+        modelo.put("label", "de la editorial");
+        modelo.put("urlaction", "/registrareditorial");
+
+        return "formulario.html";
     }
 
     @PostMapping("/registrareditorial")
@@ -56,7 +73,15 @@ public class EditorialControlador {
         } catch (ErrorServicio ex) {
             modelo.put("error", ex.getMessage());
             modelo.put("nombre", nombre);
-            return "formeditorial.html";
+            modelo.put("titulo", titulo);
+            modelo.put("pagtitulo", "Formulario editoriales");
+            modelo.put("formhead", "una editorial");
+            modelo.put("urlvolver", "/editorial");
+            modelo.put("form", "editorial");
+            modelo.put("label", "de la editorial");
+            modelo.put("urlaction", "/registrareditorial");
+
+            return "formulario.html";
         }
 
         return "redirect:/editorial";
@@ -70,13 +95,17 @@ public class EditorialControlador {
             Editorial editorial = ediservicio.consultarPorID(id);
 
             modelo.put("editorial", editorial);
+            modelo.put("pagtitulo", "Modificar editorial");
+            modelo.put("formhead", "una editorial");
+            modelo.put("urlvolver", "/editorial");
+            modelo.put("form", "editorial");
 
         } catch (ErrorServicio ex) {
             modelo.put("error", ex.getMessage());
-            return "modeditorial.html";
+            return "modificar.html";
         }
 
-        return "modeditorial.html";
+        return "modificar.html";
     }
 
     @PostMapping("/modificareditorial/{id}")
@@ -88,7 +117,11 @@ public class EditorialControlador {
             modelo.put("titulo", titulo);
             modelo.put("nombre", nombre);
             modelo.put("error", ex.getMessage());
-            return "modeditorial.html";
+            modelo.put("pagtitulo", "Modificar editorial");
+            modelo.put("formhead", "una editorial");
+            modelo.put("urlvolver", "/editorial");
+            modelo.put("form", "editorial");
+            return "modificar.html";
         }
 
         return "redirect:/editorial";

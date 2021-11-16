@@ -44,8 +44,20 @@ public interface LibroRepositorio extends JpaRepository<Libro, String> {
     @Query("SELECT l FROM Libro l WHERE l.alta = 1 ORDER BY l.titulo")
     public List<Libro> buscarActivos();
     
+    @Query("SELECT l FROM Libro l WHERE l.autor is null")
+    public List<Libro> buscarAutoresActivos();
+    
+    @Query("SELECT l FROM Libro l WHERE l.editorial is null")
+    public List<Libro> buscarEditorialesActivas();
+    
     @Query("SELECT l FROM Libro l")
     public List<Libro> buscarTodos();
+    
+    @Query("SELECT l FROM Libro l WHERE l.autor.alta = 1")
+    public List<Libro> buscarAutores();
+    
+    @Query("SELECT l FROM Libro l WHERE l.editorial.alta = 1")
+    public List<Libro> buscarEditoriales();
     
 
 }

@@ -42,15 +42,27 @@ public class LibroControlador {
 
         List<Libro> listaLibros = libroservicio.consultarActivos();
 
-        modelo.put("libros", listaLibros);
+        modelo.put("lista", listaLibros);
+        modelo.put("tablahead", "libros");
+        modelo.put("pagtitulo", "Libros");
+        modelo.put("tr", "libros");
+        modelo.put("urlguardar", "/libro/formlibro");
+        modelo.put("btguardar", "un libro");
 
-        return "libro.html";
+        return "tabla.html";
     }
 
     //Guardar un libro
     @GetMapping("/libro/formlibro")
-    public String guardarLibro() {
-        return "formlibro.html";
+    public String guardarLibro(ModelMap modelo) {
+
+        modelo.put("pagtitulo", "Formulario libros");
+        modelo.put("formhead", "un libro");
+        modelo.put("urlvolver", "/libro");
+        modelo.put("form", "libro");
+        modelo.put("urlaction", "/registrarlibro");
+
+        return "formulario.html";
     }
 
     @PostMapping("/registrarlibro")
@@ -69,7 +81,12 @@ public class LibroControlador {
             modelo.put("autor", autor);
             modelo.put("editorial", editorial);
             modelo.put("error", ex.getMessage());
-            return "formlibro.html";
+            modelo.put("pagtitulo", "Formulario libros");
+            modelo.put("formhead", "un libro");
+            modelo.put("urlvolver", "/libro");
+            modelo.put("form", "libro");
+            modelo.put("urlaction", "/registrarlibro");
+            return "formulario.html";
         }
 
         return "redirect:/libro";
@@ -83,11 +100,16 @@ public class LibroControlador {
             Libro libro = libroservicio.consultarPorId(id);
 
             modelo.put("libro", libro);
+            modelo.put("pagtitulo", "Modificar libro");
+            modelo.put("formhead", "un libro");
+            modelo.put("urlvolver", "/libro");
+            modelo.put("form", "libro");
+
         } catch (ErrorServicio ex) {
             modelo.put("error", ex.getMessage());
-            return "modlibro.html";
+            return "modificar.html";
         }
-        return "modlibro.html";
+        return "modificar.html";
     }
 
     @PostMapping("/modificarlibro/{id}")
@@ -102,7 +124,11 @@ public class LibroControlador {
             modelo.put("ejemplares", ejemplares);
             modelo.put("ejemplaresPrestados", ejemplaresP);
             modelo.put("error", ex.getMessage());
-            return "modlibro.html";
+             modelo.put("pagtitulo", "Modificar libro");
+            modelo.put("formhead", "un libro");
+            modelo.put("urlvolver", "/libro");
+            modelo.put("form", "libro");
+            return "modificar.html";
         }
 
         return "redirect:/libro";

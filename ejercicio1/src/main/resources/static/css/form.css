@@ -1,13 +1,13 @@
 nav {
     display: flex;
     justify-content: space-between;
-    background-color: rgb(121, 194, 194);
+    background-color: rgb(120, 221, 221);
     margin: 15px;
     font-family: 'Times New Roman';
 }
 
 body {
-    background-color: rgb(245, 198, 176);
+    background-color: rgb(253, 166, 85);
 }
 
 .titulo {

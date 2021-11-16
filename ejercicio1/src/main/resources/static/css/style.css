@@ -2,15 +2,14 @@
 nav {
     display: flex;
     justify-content: center;
-    background-color: rgb(121, 194, 194);
+    background-color: rgb(120, 221, 221);
     margin: 15px;
 }
 
 body {
-    background-color: rgb(245, 198, 176);
-    /* background: linear-gradient(to top, #feada6 0%, #f5efef 100%); */
-    /* background-image: url(../img/fondo.png); */
+    background-color: rgb(253, 166, 85);
     font-family: 'Times New Roman';
+    /* background-image: url(../img/libro-icon.png); */
 }
 
 .cards {
