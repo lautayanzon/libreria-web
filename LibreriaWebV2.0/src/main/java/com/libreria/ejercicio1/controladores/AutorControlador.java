@@ -58,7 +58,7 @@ public class AutorControlador {
         modelo.put("pagtitulo", "Formulario autores");
         modelo.put("formhead", "un autor");
         modelo.put("urlvolver", "/autor");
-        modelo.put("form", "autor");
+        modelo.put("form", "autoreditorial");
         modelo.put("label", "del autor");
         modelo.put("urlaction", "/registrarautor");
 
@@ -76,7 +76,7 @@ public class AutorControlador {
             modelo.put("formhead", "un autor");
             modelo.put("titulo", titulo);
             modelo.put("urlvolver", "/autor");
-            modelo.put("form", "autor");
+            modelo.put("form", "autoreditorial");
             modelo.put("label", "del autor");
             modelo.put("urlaction", "/registrarautor");
             return "formulario.html";
@@ -95,7 +95,7 @@ public class AutorControlador {
             modelo.put("pagtitulo", "Modificar autor");
             modelo.put("formhead", "un autor");
             modelo.put("urlvolver", "/autor");
-            modelo.put("form", "autor");
+            modelo.put("form", "autoreditorial");
 
             modelo.put("autor", autor);
         } catch (ErrorServicio ex) {
@@ -118,7 +118,7 @@ public class AutorControlador {
             modelo.put("pagtitulo", "Modificar autor");
             modelo.put("formhead", "un autor");
             modelo.put("urlvolver", "/autor");
-            modelo.put("form", "autor");
+            modelo.put("form", "autoreditorial");
             return "modificar.html";
         }
 

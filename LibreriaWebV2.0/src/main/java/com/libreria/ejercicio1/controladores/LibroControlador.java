@@ -1,7 +1,5 @@
 package com.libreria.ejercicio1.controladores;
 
-import com.libreria.ejercicio1.entidades.Autor;
-import com.libreria.ejercicio1.entidades.Editorial;
 import com.libreria.ejercicio1.entidades.Libro;
 import com.libreria.ejercicio1.excepciones.ErrorServicio;
 import com.libreria.ejercicio1.servicios.AutorServicio;

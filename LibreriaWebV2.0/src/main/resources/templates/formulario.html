@@ -21,6 +21,8 @@
                 <li><a href="/libro">Libros</a></li>
                 <li><a href="/autor">Autores</a></li>
                 <li><a href="/editorial">Editoriales</a></li>
+                <li><a href="/prestamo">Prestamos</a></li>
+                <li><a href="/cliente/tabla">Clientes</a></li>
 
             </ul>
         </div>
@@ -58,12 +60,27 @@
                     <br>
                     <button type="submit">Guardar</button>
                 </form>
-                <form th:if="${form} != 'libro'" th:action="@{${urlaction}}" method="POST">
+                <form th:if="${form} == 'cliente'" th:action="@{${urlaction}}" method="POST">
+
+                    <label for="nombre">Nombre</label><br>
+                    <input type="text" name="nombre" th:value="${nombre}"><br>
+                    <label for="apellido">Apellido</label><br>
+                    <input type="text" name="apellido" th:value="${apellido}"><br>
+                    <label for="documento">Documento</label><br>
+                    <input type="number" name="documento" th:value="${documento}"><br>
+                    <label for="telefono">Telefono</label><br>
+                    <input type="text" name="telefono" th:value="${telefono}"><br>
+
+                    <br>
+                    <button type="submit">Guardar</button>
+                </form>
+                <form th:if="${form} == 'autoreditorial'" th:action="@{${urlaction}}" method="POST">
 
                     <label for="titulo">Titulo del libro</label><br>
                     <select name="titulo">
 
-                        <option th:each="libro : ${lista}" th:value="${libro.titulo}" th:text="${libro.titulo}"></option>
+                        <option th:each="libro : ${lista}" th:value="${libro.titulo}" th:text="${libro.titulo}">
+                        </option>
                         <option th:if="${error} != null" th:value="${titulo}" th:text="${titulo}"></option>
 
                     </select>
@@ -76,13 +93,37 @@
                     <br>
                     <button type="submit">Guardar</button>
                 </form>
+                <form th:if="${form} == 'prestamo'" th:action="@{${urlaction}}" method="POST">
+
+                    <label for="titulo">Titulo del libro</label><br>
+                    <select name="idLibro">
+
+                        <option th:each="libro : ${listalibros}" th:value="${libro.id}" th:text="${libro.titulo}">
+                        </option>
+                        <option th:if="${error} != null" th:value="${libro}" th:text="${librotitulo}"></option>
+
+                    </select>
+
+                    <br><label for="cliente">Cliente</label><br>
+                    <select name="idCliente">
+
+                        <option th:each="cliente : ${listaclientes}" th:value="${cliente.id}"
+                            th:text="${cliente.nombre}"></option>
+                        <option th:if="${error} != null" th:value="${cliente}" th:text="${clientenombre}">
+                        </option>
+
+                    </select>
+
+                    <br>
+                    <button type="submit">Guardar</button>
+                </form>
             </div>
 
             <div class="form-pie">
                 <div class="msg">
                     <p th:if="${error != null}" th:text="${error}"></p>
                 </div>
-                
+
                 <div class="btn-pie">
                     <button type="button" class="btn btn-primary"><a th:href="@{${urlvolver}}">Volver</a></button>
                 </div>

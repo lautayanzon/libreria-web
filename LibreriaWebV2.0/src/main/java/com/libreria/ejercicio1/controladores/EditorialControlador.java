@@ -58,7 +58,7 @@ public class EditorialControlador {
         modelo.put("pagtitulo", "Formulario editoriales");
         modelo.put("formhead", "una editorial");
         modelo.put("urlvolver", "/editorial");
-        modelo.put("form", "editorial");
+        modelo.put("form", "autoreditorial");
         modelo.put("label", "de la editorial");
         modelo.put("urlaction", "/registrareditorial");
 
@@ -77,7 +77,7 @@ public class EditorialControlador {
             modelo.put("pagtitulo", "Formulario editoriales");
             modelo.put("formhead", "una editorial");
             modelo.put("urlvolver", "/editorial");
-            modelo.put("form", "editorial");
+            modelo.put("form", "autoreditorial");
             modelo.put("label", "de la editorial");
             modelo.put("urlaction", "/registrareditorial");
 
@@ -98,7 +98,7 @@ public class EditorialControlador {
             modelo.put("pagtitulo", "Modificar editorial");
             modelo.put("formhead", "una editorial");
             modelo.put("urlvolver", "/editorial");
-            modelo.put("form", "editorial");
+            modelo.put("form", "autoreditorial");
 
         } catch (ErrorServicio ex) {
             modelo.put("error", ex.getMessage());
@@ -120,7 +120,7 @@ public class EditorialControlador {
             modelo.put("pagtitulo", "Modificar editorial");
             modelo.put("formhead", "una editorial");
             modelo.put("urlvolver", "/editorial");
-            modelo.put("form", "editorial");
+            modelo.put("form", "autoreditorial");
             return "modificar.html";
         }
 
