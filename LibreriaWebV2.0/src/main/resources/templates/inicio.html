@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="/fragments/head :: head"></head>
+
+<body>
+
+    <nav class="index-nav">
+        <div class="bt-inicio">
+            <a href="/inicio">LIBRERIA WEB</a>
+        </div>
+        <div>
+            <a href="/registro">PERFIL</a>
+            <a href="/logout">SALIR</a>
+        </div>
+    </nav>
+
+    <div class="cards">
+        <div>
+            <div class="hd-card">
+                <h2>Libro</h2>
+            </div>
+            <div class="bg-cards libro">
+                <div class="botones">
+                    <button><a href="/libro/tabla">Ver tabla</a></button>
+                    <button><a href="/libro/formlibro">Guardar un libro</a></button>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div class="hd-card">
+                <h2>Autor</h2>
+            </div>
+            <div class="bg-cards autor">
+                <div class="botones">
+                    <button><a href="/autor/tabla">Ver tabla</a></button>
+                    <button><a href="/autor/formautor">Guardar un autor</a></button>
+                </div>
+
+            </div>
+        </div>
+        <div>
+            <div class="hd-card">
+                <h2>Editorial</h2>
+            </div>
+            <div class="bg-cards editorial">
+                <div class="botones">
+                    <button><a href="/editorial/tabla">Ver tabla</a></button>
+                    <button><a href="/editorial/formeditorial">Guardar una editorial</a></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

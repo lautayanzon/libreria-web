@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,7 +23,8 @@ import org.springframework.web.bind.annotation.RequestParam;
  * @author Lautaro Yanzon
  */
 @Controller
-@RequestMapping("/")
+@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_USUARIO')")
+@RequestMapping("/libro")
 public class LibroControlador {
 
     @Autowired
@@ -35,7 +37,7 @@ public class LibroControlador {
     private EditorialServicio editorialS;
 
     //Mostrar libros
-    @GetMapping("/libro")
+    @GetMapping("/tabla")
     public String libro(ModelMap modelo) {
 
         List<Libro> listaLibros = libroservicio.consultarActivos();
@@ -51,12 +53,12 @@ public class LibroControlador {
     }
 
     //Guardar un libro
-    @GetMapping("/libro/formlibro")
+    @GetMapping("/formlibro")
     public String guardarLibro(ModelMap modelo) {
 
         modelo.put("pagtitulo", "Formulario libros");
         modelo.put("formhead", "un libro");
-        modelo.put("urlvolver", "/libro");
+        modelo.put("urlvolver", "/libro/tabla");
         modelo.put("form", "libro");
         modelo.put("urlaction", "/registrarlibro");
 
@@ -81,17 +83,17 @@ public class LibroControlador {
             modelo.put("error", ex.getMessage());
             modelo.put("pagtitulo", "Formulario libros");
             modelo.put("formhead", "un libro");
-            modelo.put("urlvolver", "/libro");
+            modelo.put("urlvolver", "/libro/tabla");
             modelo.put("form", "libro");
             modelo.put("urlaction", "/registrarlibro");
             return "formulario.html";
         }
 
-        return "redirect:/libro";
+        return "redirect:/tabla";
     }
 
     //Modificar un libro
-    @GetMapping("/libro/modificar/{id}")
+    @GetMapping("/modificar/{id}")
     public String modificarLibro(ModelMap modelo, @PathVariable String id) {
 
         try {
@@ -100,7 +102,7 @@ public class LibroControlador {
             modelo.put("libro", libro);
             modelo.put("pagtitulo", "Modificar libro");
             modelo.put("formhead", "un libro");
-            modelo.put("urlvolver", "/libro");
+            modelo.put("urlvolver", "/libro/tabla");
             modelo.put("form", "libro");
 
         } catch (ErrorServicio ex) {
@@ -124,16 +126,16 @@ public class LibroControlador {
             modelo.put("error", ex.getMessage());
              modelo.put("pagtitulo", "Modificar libro");
             modelo.put("formhead", "un libro");
-            modelo.put("urlvolver", "/libro");
+            modelo.put("urlvolver", "/libro/tabla");
             modelo.put("form", "libro");
             return "modificar.html";
         }
 
-        return "redirect:/libro";
+        return "redirect:/tabla";
     }
 
     //Dar de baja-alta
-    @GetMapping("/libro/baja/{id}")
+    @GetMapping("/baja/{id}")
     public String bajaLibro(@PathVariable String id) {
 
         try {
@@ -142,10 +144,10 @@ public class LibroControlador {
             Logger.getLogger(LibroControlador.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        return "redirect:/libro";
+        return "redirect:/tabla";
     }
 
-    @GetMapping("/libro/alta/{id}")
+    @GetMapping("/alta/{id}")
     public String altaLibro(@PathVariable String id) {
 
         try {
@@ -154,7 +156,7 @@ public class LibroControlador {
             Logger.getLogger(LibroControlador.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        return "redirect:/libro";
+        return "redirect:/tabla";
     }
 
 }

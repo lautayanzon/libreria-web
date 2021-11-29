@@ -1,16 +1,5 @@
 
-nav {
-    display: flex;
-    justify-content: center;
-    background-color: rgb(120, 221, 221);
-    margin: 15px;
-}
-
-body {
-    background-color: rgb(253, 166, 85);
-    font-family: 'Times New Roman';
-    /* background-image: url(../img/libro-icon.png); */
-}
+/* INICIO */
 
 .cards {
     margin-top: 3em;
@@ -24,8 +13,8 @@ body {
 
 .bg-cards {
     padding: 50px;
-    height: 180px;
-    width: 180px;
+    height: 280px;
+    width: 280px;
     border: orangered 10px groove ;
     outline: black solid;
     background-color: lightcoral;
@@ -49,16 +38,6 @@ body {
     background-position: 55% center;
 }
 
-a:link, a:visited {
-    color: white;
-    text-decoration: none;
-}
-
-a {
-    font-family: 'Segoe UI';
-    font-size: 15px;
-}
-
 .botones {
     display: grid;
     align-items: center;
@@ -74,7 +53,3 @@ a {
     outline: darkblue 1px;
     outline-style: inset;
 }
-
-/* .sm {
-    margin-bottom: 0px;
-} */

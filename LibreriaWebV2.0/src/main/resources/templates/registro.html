@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="/fragments/head :: head"></head>
+<link rel="stylesheet" type="text/css" href="/css/index.css">
+
+<body>
+
+    <nav class="index-nav">
+        <div class="bt-inicio">
+            <a href="/">LIBRERIA WEB</a>
+        </div>
+        <div>
+            <a href="/registro">REGISTRO</a>
+            <a href="/login">LOGIN</a>
+        </div>
+    </nav>
+
+
+    <header class="hd-registro">
+        <div>
+            <h1>Libreria Web</h1>
+        </div>
+    </header>
+
+    <div class="registro">
+
+        <div class="registro">
+
+            <div class="hd">
+                <h3>Registrar <span th:text="${formhead}"></span></h3>
+            </div>
+
+            <div class="formulario">
+                <form th:action="@{${urlaction}}" method="POST">
+
+                    <label for="nombre">Nombre</label><br>
+                    <input type="text" name="nombre" th:value="${nombre}"><br>
+                    <label for="apellido">Apellido</label><br>
+                    <input type="text" name="apellido" th:value="${apellido}"><br>
+                    <label for="mail">Mail</label><br>
+                    <input type="text" name="mail" th:value="${mail}"><br>
+                    <label for="clave">Clave</label><br>
+                    <input type="password" name="clave" th:value="${clave}"><br>
+                    <label for="clave2">Clave 2</label><br>
+                    <input type="password" name="clave2" th:value="${clave2}"><br>
+
+                    <br>
+                    <button type="submit">Guardar</button>
+                </form>
+            </div>
+
+            <div class="form-pie">
+                <div class="msg">
+                    <p th:if="${error != null}" th:text="${error}"></p>
+                </div>
+
+                <div class="btn-pie">
+                    <button type="button" class="btn btn-primary"><a th:href="@{${urlvolver}}">Volver</a></button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <footer th:replace="/fragments/footer :: footer"></footer>
+
+</body>
+
+</html>

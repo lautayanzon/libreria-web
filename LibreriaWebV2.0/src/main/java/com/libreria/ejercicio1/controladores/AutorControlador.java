@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,7 +23,8 @@ import org.springframework.web.bind.annotation.RequestParam;
  * @author Lautaro Yanzon
  */
 @Controller
-@RequestMapping("/")
+@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_USUARIO')")
+@RequestMapping("/autor")
 public class AutorControlador {
 
     @Autowired
@@ -32,7 +34,7 @@ public class AutorControlador {
     private LibroServicio libroservicio;
 
     //Mostrar tabla
-    @GetMapping("/autor")
+    @GetMapping("/tabla")
     public String autor(ModelMap modelo) {
 
         List<Libro> listaAutores = libroservicio.consultarPorAutor();
@@ -48,7 +50,7 @@ public class AutorControlador {
     }
 
     //Guardar autores
-    @GetMapping("/autor/formautor")
+    @GetMapping("/formautor")
     public String guardarAutor(ModelMap modelo) {
 
         List<Libro> listaLibros = libroservicio.consultarPorAutorActivo();
@@ -57,10 +59,10 @@ public class AutorControlador {
 
         modelo.put("pagtitulo", "Formulario autores");
         modelo.put("formhead", "un autor");
-        modelo.put("urlvolver", "/autor");
+        modelo.put("urlvolver", "/autor/tabla");
         modelo.put("form", "autoreditorial");
         modelo.put("label", "del autor");
-        modelo.put("urlaction", "/registrarautor");
+        modelo.put("urlaction", "/autor/registrarautor");
 
         return "formulario.html";
     }
@@ -75,18 +77,18 @@ public class AutorControlador {
             modelo.put("pagtitulo", "Formulario autores");
             modelo.put("formhead", "un autor");
             modelo.put("titulo", titulo);
-            modelo.put("urlvolver", "/autor");
+            modelo.put("urlvolver", "/autor/tabla");
             modelo.put("form", "autoreditorial");
             modelo.put("label", "del autor");
-            modelo.put("urlaction", "/registrarautor");
+            modelo.put("urlaction", "/autor/registrarautor");
             return "formulario.html";
         }
 
-        return "redirect:/autor";
+        return "redirect:/autor/tabla";
     }
 
     //Modificar autores
-    @GetMapping("/autor/modificar/{id}")
+    @GetMapping("/modificar/{id}")
     public String modificarAutor(ModelMap modelo, @PathVariable String id) {
 
         try {
@@ -94,8 +96,8 @@ public class AutorControlador {
 
             modelo.put("pagtitulo", "Modificar autor");
             modelo.put("formhead", "un autor");
-            modelo.put("urlvolver", "/autor");
-            modelo.put("form", "autoreditorial");
+            modelo.put("urlvolver", "/autor/tabla");
+            modelo.put("form", "autor");
 
             modelo.put("autor", autor);
         } catch (ErrorServicio ex) {
@@ -117,16 +119,16 @@ public class AutorControlador {
             modelo.put("error", ex.getMessage());
             modelo.put("pagtitulo", "Modificar autor");
             modelo.put("formhead", "un autor");
-            modelo.put("urlvolver", "/autor");
-            modelo.put("form", "autoreditorial");
+            modelo.put("urlvolver", "/autor/tabla");
+            modelo.put("form", "autor");
             return "modificar.html";
         }
 
-        return "redirect:/autor";
+        return "redirect:/autor/tabla";
     }
 
     //Dar de baja-alta
-    @GetMapping("/autor/baja/{id}")
+    @GetMapping("/baja/{id}")
     public String darDeBaja(@PathVariable String id) {
 
         try {
@@ -135,10 +137,10 @@ public class AutorControlador {
             Logger.getLogger(AutorControlador.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        return "redirect:/autor";
+        return "redirect:/autor/tabla";
     }
 
-    @GetMapping("/autor/alta/{id}")
+    @GetMapping("/alta/{id}")
     public String darDeAlta(@PathVariable String id) {
 
         try {
@@ -147,7 +149,7 @@ public class AutorControlador {
             Logger.getLogger(AutorControlador.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        return "redirect:/autor";
+        return "redirect:/autor/tabla";
     }
 
 }

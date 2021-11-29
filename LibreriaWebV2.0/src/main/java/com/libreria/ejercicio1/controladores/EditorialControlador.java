@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,7 +23,8 @@ import org.springframework.web.bind.annotation.RequestParam;
  * @author Lautaro Yanzon
  */
 @Controller
-@RequestMapping("/")
+@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_USUARIO')")
+@RequestMapping("/editorial")
 public class EditorialControlador {
 
     @Autowired
@@ -32,7 +34,7 @@ public class EditorialControlador {
     private LibroServicio libroservicio;
 
     //Mostrar tabla
-    @GetMapping("/editorial")
+    @GetMapping("/tabla")
     public String editorial(ModelMap modelo) {
 
         List<Libro> listaEditorial = libroservicio.consultarPorEditorial();
@@ -48,7 +50,7 @@ public class EditorialControlador {
     }
 
     //Guardar editoriales
-    @GetMapping("/editorial/formeditorial")
+    @GetMapping("/formeditorial")
     public String guardarEditorial(ModelMap modelo) {
 
         List<Libro> listaLibros = libroservicio.consultarPorEditorialActiva();
@@ -57,10 +59,10 @@ public class EditorialControlador {
 
         modelo.put("pagtitulo", "Formulario editoriales");
         modelo.put("formhead", "una editorial");
-        modelo.put("urlvolver", "/editorial");
+        modelo.put("urlvolver", "/editorial/tabla");
         modelo.put("form", "autoreditorial");
         modelo.put("label", "de la editorial");
-        modelo.put("urlaction", "/registrareditorial");
+        modelo.put("urlaction", "/editorial/registrareditorial");
 
         return "formulario.html";
     }
@@ -76,19 +78,19 @@ public class EditorialControlador {
             modelo.put("titulo", titulo);
             modelo.put("pagtitulo", "Formulario editoriales");
             modelo.put("formhead", "una editorial");
-            modelo.put("urlvolver", "/editorial");
+            modelo.put("urlvolver", "/editorial/tabla");
             modelo.put("form", "autoreditorial");
             modelo.put("label", "de la editorial");
-            modelo.put("urlaction", "/registrareditorial");
+            modelo.put("urlaction", "/editorial/registrareditorial");
 
             return "formulario.html";
         }
 
-        return "redirect:/editorial";
+        return "redirect:/editorial/tabla";
     }
 
     //Modificar editoriales
-    @GetMapping("/editorial/modificar/{id}")
+    @GetMapping("/modificar/{id}")
     public String modificarEditorial(ModelMap modelo, @PathVariable String id) {
 
         try {
@@ -124,11 +126,11 @@ public class EditorialControlador {
             return "modificar.html";
         }
 
-        return "redirect:/editorial";
+        return "redirect:/editorial/tabla";
     }
 
     //Dar de baja-alta
-    @GetMapping("/editorial/baja/{id}")
+    @GetMapping("/baja/{id}")
     public String darDeBaja(@PathVariable String id) {
 
         try {
@@ -137,10 +139,10 @@ public class EditorialControlador {
             Logger.getLogger(EditorialControlador.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        return "redirect:/editorial";
+        return "redirect:/editorial/tabla";
     }
 
-    @GetMapping("/editorial/alta/{id}")
+    @GetMapping("/alta/{id}")
     public String darDeAlta(@PathVariable String id) {
 
         try {
@@ -149,7 +151,7 @@ public class EditorialControlador {
             Logger.getLogger(AutorControlador.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        return "redirect:/editorial";
+        return "redirect:/editorial/tabla";
     }
 
 }

@@ -1,49 +1,7 @@
-nav {
-    display: flex;
-    justify-content: space-between;
-    background-color: rgb(120, 221, 221);
-    margin: 15px;
-    font-family: 'Times New Roman';
-}
 
-body {
-    background-color: rgb(253, 166, 85);
-}
+/* TABLA */
 
-.titulo {
-    padding-right: 5%;
-}
-
-h1 {
-    font-size: 1.5em;
-    font-weight: bold;
-    padding-top: 15%;
-    color: black;
-}
-
-.navegador ul {
-    display: flex;
-    list-style: none;
-    padding-left: 5%;
-}
-
-.navegador ul li {
-    padding-top: 5%;
-    padding-left: 15px;
-    margin: 5px;
-}
-
-a:link, a:visited {
-    color: white;
-    text-decoration: none;
-    font-size: 18px;
-}
-
-a:hover {
-    color: blue;
-}
-
-.contenido {
+.contenido-tabla {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -83,7 +41,6 @@ a:hover {
 }
 
 .sticky {
-    /* background-color: rgb(245, 198, 176); */
     background-color: lightcoral;
     position: sticky;
     top: 0;
@@ -97,4 +54,5 @@ a:hover {
 
 th[scope="col"] {
     border: 0px;
-} 
+}
+

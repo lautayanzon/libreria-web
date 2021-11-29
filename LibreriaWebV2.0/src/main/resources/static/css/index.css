@@ -1,0 +1,124 @@
+/* GENERAL */
+
+body {
+    font-family: 'Segoe UI';
+    margin: 0;
+    background-color: rgb(253, 166, 85);
+}
+
+h1 {
+    font-size: 1.5em;
+    font-weight: bold;
+    padding-top: 15%;
+    color: black;
+}
+
+a:link, a:visited {
+    color: white;
+    text-decoration: none;
+    /* font-size: 18px; */
+}
+
+a:hover {
+    color: blue;
+}
+
+/* INDEX */
+
+
+header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 300px;
+    margin: 0;
+    font-size: 50px;
+}
+
+.hd-a a {
+    font-size: 25px;
+    color: white;
+    padding: 15px;
+    border-radius: 15px;
+    background-color: blue;
+}
+
+.contenido-index {
+    display: grid;
+    grid-template: 1fr 1fr 1fr / 50% 50%;
+    justify-items: center;
+    max-width: 70%;
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.col-1 {
+    max-width: 70%;
+}
+
+img {
+    width: 300px;
+    height: 300px;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+}
+
+/* REGISTRO */
+
+.hd-registro {
+    height: 150px;
+}
+
+/* LOGIN */
+
+.form-login {
+    color: white;
+    border: solid black 1px;
+    border-radius: 15px;
+    padding: 15px;
+    margin: 10px;
+    margin-top: 25px;
+    font-size: 15px;
+    background-color: rgba(0, 0, 0, 0.486);
+}
+
+.form-login button {
+    color: white;
+    background-color: blue;
+    border-radius: 5px;
+    padding: 5px;
+    float: right;
+}
+
+.p-form, .p-form a {
+    font-size: 18px;
+}
+
+.p-form a {
+    text-decoration: underline;
+    color: blue;
+}
+
+/* FOOTER */
+
+footer {
+    display: flex;
+    justify-content: center;
+    background-color: black;
+    padding-top: 10px;
+    color: white;
+
+}
+
+.fix {
+    height: 200px;
+}
+
+.footer-login {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}

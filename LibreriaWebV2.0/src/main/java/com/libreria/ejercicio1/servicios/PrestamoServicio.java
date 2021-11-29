@@ -48,7 +48,13 @@ public class PrestamoServicio {
         Libro l = librorepo.buscarPorId(idLibro);
 
         if (l != null) {
-            p.setLibro(l);
+            if (l.getEjemplaresRestantes() != 0) {
+                l.setEjemplaresRestantes(l.getEjemplaresRestantes() - 1);
+                librorepo.save(l);
+                p.setLibro(l);
+            } else {
+                throw new ErrorServicio("No quedan ejemplares para prestar.");
+            }
         } else {
             throw new ErrorServicio("No se encontro el libro.");
         }

@@ -1,0 +1,17 @@
+<nav class="index-nav">
+    <div class="bt-inicio">
+        <a href="/">LIBRERIA WEB</a>
+    </div>
+    <div th:if="${nav} == 'index'">
+        <a href="/registro">REGISTRO</a>
+        <a href="/login">LOGIN</a>
+    </div>
+    <div th:if="${nav} != 'index'" class="navegador">
+        <a href="/inicio">Inicio</a>
+        <a href="/libro/tabla">Libros</a>
+        <a href="/autor/tabla">Autores</a>
+        <a href="/editorial/tabla">Editoriales</a>
+        <a href="/prestamo/tabla">Prestamos</a>
+        <a href="/cliente/tabla">Clientes</a>
+    </div>
+</nav>

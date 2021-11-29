@@ -7,8 +7,8 @@
 <body>
 
     <nav class="index-nav">
-        <div>
-            <a class="bt-inicio" href="/">LIBRERIA WEB</a>
+        <div class="bt-inicio">
+            <a href="/">LIBRERIA WEB</a>
         </div>
         <div>
             <a href="/registro">REGISTRO</a>
@@ -21,10 +21,21 @@
         <div>
             <h1>Libreria Web</h1>
         </div>
-        <div class="hd-a">
-            <a href="/registro">¡Regístrate!</a>
+        <div class="form-login">
+            <form action="/logincheck" method="POST">
+                <label for="username">Mail</label><br>
+                <input type="email" name="username"><br>
+
+                <label for="password">Clave</label><br>
+                <input type="password" name="password"><br>
+
+                <br><button type="submit">Entrar</button>
+            </form>
         </div>
+        <p class="p-form">No tienes una cuenta? <a href="/registro">Crea una.</a></p>
     </header>
+
+    <div class="fix"></div>
 
     <section>
         <div class="contenido-index">
@@ -79,7 +90,7 @@
 
     <div class="fix"></div>
 
-    <footer th:replace="/fragments/footer :: footer"></footer>
+    <footer class="footer-login" th:replace="/fragments/footer :: footer"></footer>
 
 </body>
 
